@@ -50,10 +50,12 @@ function get_pkgs() {
     const files = fs.readdirSync(dir);
     files.forEach(function(file) {
       filepath = dir + '/' + file;
+      console.log(`Checking ${filepath} for pkg`);
       const stat = fs.statSync(filepath);
       if (stat.isDirectory()) {
         filelist = walkSync(filepath, filelist);
       } else if (path.extname(file).toLowerCase() === '.pkg') {
+        console.log(`found ${filepath} for pkg`);
         filelist.push({
           filepath: filepath,
           dir: path.dirname(filepath),
